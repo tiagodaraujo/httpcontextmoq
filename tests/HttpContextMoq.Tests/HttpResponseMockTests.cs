@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.IO.Pipelines;
 using System.Threading.Tasks;
 using FluentAssertions;
 using Microsoft.AspNetCore.Http;
@@ -79,6 +80,9 @@ namespace HttpContextMoq.Tests
                 new PropertyGetSetUnitTest<HttpResponseMock, HttpResponse, int>(
                     t => t.StatusCode,
                     t => t.StatusCode = Fakes.Int
+                ),
+                new PropertyGetUnitTest<HttpResponseMock, HttpResponse, PipeWriter>(
+                    t => t.BodyWriter
                 ),
                 //Methods
                 new MethodInvokeUnitTest<HttpResponseMock, HttpResponse>(
